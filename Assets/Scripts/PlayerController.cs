@@ -1,10 +1,14 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     // public variables are always capitalised
     public float Speed = 1;
+
+    public int count = 0;
+    public TMP_Text Text;
     private Vector2 movement;
     public Rigidbody rigidbody;
 
@@ -45,8 +49,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("item1")){
-            other.gameObject.SetActive(false);
+        if (other.gameObject.CompareTag("item1"))
+        {
+            count++;
+            other.gameObject.SetActive(false); // Deactivate the item
+            Text.text = "Item 1 Collected, you collected "+ count; // Update the TMP_Text component with the message
         }
     }
 }
